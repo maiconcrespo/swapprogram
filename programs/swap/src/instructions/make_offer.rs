@@ -9,7 +9,7 @@ use crate::{Offer, ANCHOR_DISCRIMINATOR};
 use super::transfer_tokens;
 
 #[derive(Accounts)]
-#[instruction(id:u64)] //Agregamos que queremos aceder a la intruccion
+#[instruction(id: u64)] //Agregamos que queremos aceder a la intruccion
 pub struct MakeOffer<'info> {
     //Que tipo de cuenta necesitamos para cuando las personas quieran hacer una oferta.
     //Primero necesitamos la cuenta del proprietario que va a firmar la transaccion.
@@ -55,11 +55,11 @@ pub struct MakeOffer<'info> {
 
     pub system_program: Program<'info, System>,
     pub token_program: Interface<'info, TokenInterface>,
-    pub associaterd_token_program: Program<'info, AssociatedToken>,
+    pub associated_token_program: Program<'info, AssociatedToken>,
 }
 
 pub fn send_offered_tokens_to_vault(
-    context: Context<MakeOffer>,
+    context: &Context<MakeOffer>,
     token_a_offered_amount: u64,
 ) -> Result<()> {
     transfer_tokens(
